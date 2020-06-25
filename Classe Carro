@@ -1,0 +1,120 @@
+def speed_gear():
+    print("""
+
+  GEAR     SPEED INTERVAL
+
+   0            0km/h
+   1          1 - 20km/h
+   2          21 - 35 km/h
+   3          36 - 50km/h  
+   4          51 - 65km/h
+   5          65km/h(Max)
+
+
+""")
+
+
+class Car:
+    def __init__(self, model, color, maximumspeed, turned_on = False, gear = 0, current_speed = 0):
+
+        self.model = model
+        self.color = color
+        self.maximumspeed = maximumspeed
+        self.turned_on = turned_on
+        self.gear = gear
+        self.current_speed = current_speed
+
+    def turn_on(self):
+        self.turned_on = True
+        print(self.turned_on)
+
+    def increaseGear(self):
+        if self.gear == 5:
+            print('Not possible to increase.')
+
+        else:
+            self.gear = self.gear + 1
+            print(self.gear)
+
+    def reduceGear(self):
+        if self.gear == 0:
+            print('Not possible to reduce.')
+
+        else:
+            self.gear = self.gear - 1
+            print(self.gear)
+
+    def accelerate(self):
+        x = 0
+        if self.turned_on == False:
+            print('The car is turned off.')
+
+        else:
+            if self.gear == 0:
+                print('Increase your gear first!')
+            else:      
+                x = float(input('How much speed to increase? (FLOAT)'))
+                x = self.current_speed + x
+                if x >= 1 and x <= 20 and self.gear == 1:
+                    self.current_speed = x
+                    print(self.current_speed)
+                    
+                elif x >= 21 and x <= 35 and self.gear == 2:
+                    self.current_speed = x
+                    print(self.current_speed)
+                    
+                elif x >= 36 and x <= 50 and self.gear == 3:
+                    self.current_speed = x
+                    print(self.current_speed)
+
+                elif x >= 51 and x < 65 and self.gear == 4:
+                    self.current_speed = x
+                    print(self.current_speed)
+
+                elif x == 65 and self.gear == 5:
+                    self.current_speed =  x
+                    print(self.current_speed)
+                    
+                else:
+                    print('You need more Gear.')
+
+                    
+                
+                
+    def breaks(self):
+        b = 0
+        if self.turned_on == False:
+            print('The car is turned off.')
+            
+        else:
+            b = float(input('How much speed to decrease?'))
+            b = self.current_speed - b
+            if b >= 1 and b <= 20 and self.gear == 1:
+                self.current_speed = b
+                print(self.current_speed)
+                    
+            elif b >= 21 and b <= 35 and self.gear == 2:
+                self.current_speed = b
+                print(self.current_speed)
+                    
+            elif b >= 36 and b <= 50 and self.gear == 3:
+                self.current_speed = b
+                print(self.current_speed)
+
+            elif b >= 51 and b < 65 and self.gear == 4:
+                self.current_speed = b
+                print(self.current_speed)
+
+            elif b == 65 and self.gear == 5:
+                self.current_speed =  b
+                print(self.current_speed)
+                    
+            else:
+                print('You need to reduce your Gear.')
+            
+    def info(self):
+        print('MODEL:',self.model,'COLOR:', self.color,'MS:', self.maximumspeed, 'Turned On:',self.turned_on,'GEAR:',self.gear, 'CS:',self.current_speed)
+
+speed_gear()
+car = Car('Citroen','White',160)
+car.info()
